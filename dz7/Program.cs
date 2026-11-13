@@ -1,9 +1,21 @@
 ﻿using System;
 using System.IO;
-namespace Exersice8_3
+namespace Homework8_1
 {
     class Program
     {
+        public static void SearchMail(ref string s)
+        {
+            int index = s.IndexOf('#');
+            if (index == -1)
+            {
+                s = "";
+            }
+            else
+            {
+                s = s.Substring(index + 1).Trim();
+            }
+        }
         static void Main()
         {
             Console.Write("Введите имя файла: ");
@@ -14,12 +26,21 @@ namespace Exersice8_3
                 Console.WriteLine("Такого файла нет");
                 return;
             }
+            string[] lines = File.ReadAllLines(fileName);
+            StreamWriter sw = new StreamWriter("emails.txt");
 
-            string text = File.ReadAllText(fileName);
-            string bigText = text.ToUpper();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string s = lines[i];
+                SearchMail(ref s);
 
-            File.WriteAllText("output.txt", bigText);
-            Console.WriteLine("результат в файле output.txt");
+                if (s != "")
+                {
+                    sw.WriteLine(s);
+                }
+            }
+            sw.Close();
+            Console.WriteLine("Адреса в emails.txt");
         }
     }
 }
