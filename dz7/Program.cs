@@ -1,25 +1,38 @@
 ﻿using System;
-using System.IO;
-namespace Exersice8_3
+namespace Exercise8_4
 {
     class Program
     {
+        static void CheckFormattable(object obj)
+        {
+            if (obj is IFormattable)
+            {
+                Console.WriteLine("is: реализует");
+            }
+            else
+            {
+                Console.WriteLine("is: не реализует");
+            }
+            IFormattable f = obj as IFormattable;
+            if (f != null)
+            {
+                Console.WriteLine("as: реализует, значение " + f.ToString(null, null));
+            }
+            else
+            {
+                Console.WriteLine("as: не реализует");
+            }
+        }
         static void Main()
         {
-            Console.Write("Введите имя файла: ");
-            string fileName = Console.ReadLine();
-
-            if (!File.Exists(fileName))
-            {
-                Console.WriteLine("Такого файла нет");
-                return;
-            }
-
-            string text = File.ReadAllText(fileName);
-            string bigText = text.ToUpper();
-
-            File.WriteAllText("output.txt", bigText);
-            Console.WriteLine("результат в файле output.txt");
+            Console.WriteLine("int:");
+            CheckFormattable(42);
+            Console.WriteLine("double:");
+            CheckFormattable(3.14);
+            Console.WriteLine("DateTime:");
+            CheckFormattable(DateTime.Now);
+            Console.WriteLine("string:");
+            CheckFormattable("привет");
         }
     }
 }
