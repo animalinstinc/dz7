@@ -1,25 +1,24 @@
 ﻿using System;
-using System.IO;
-namespace Exersice8_3
+
+namespace Exercise8_2
 {
     class Program
     {
+        static string Reverse(string text)
+        {
+            string result = "";
+            for (int i = text.Length - 1; i >= 0; i--)
+            {
+                result += text[i];
+            }
+            return result;
+        }
         static void Main()
         {
-            Console.Write("Введите имя файла: ");
-            string fileName = Console.ReadLine();
-
-            if (!File.Exists(fileName))
-            {
-                Console.WriteLine("Такого файла нет");
-                return;
-            }
-
-            string text = File.ReadAllText(fileName);
-            string bigText = text.ToUpper();
-
-            File.WriteAllText("output.txt", bigText);
-            Console.WriteLine("результат в файле output.txt");
+            Console.WriteLine(Reverse("Привет"));
+            Console.WriteLine(Reverse("Hello, World!"));
+            Console.WriteLine(Reverse("12345"));
+            Console.WriteLine(Reverse("а роза упала на лапу азора"));
         }
     }
 }
