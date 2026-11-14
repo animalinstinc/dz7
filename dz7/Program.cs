@@ -4,7 +4,6 @@ namespace Exercise8_2
 {
     class Program
     {
-        // переворачивает строку
         static string Reverse(string text)
         {
             string result = "";
