@@ -4,7 +4,7 @@ namespace Homework8_1
 {
     class Program
     {
-        public static void SearchMail(ref string s)
+        public void SearchMail(ref string s)
         {
             int index = s.IndexOf('#');
             if (index == -1)
