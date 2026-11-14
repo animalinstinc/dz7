@@ -1,24 +1,38 @@
 ﻿using System;
-
-namespace Exercise8_2
+namespace Exercise8_4
 {
     class Program
     {
-        static string Reverse(string text)
+        static void CheckFormattable(object obj)
         {
-            string result = "";
-            for (int i = text.Length - 1; i >= 0; i--)
+            if (obj is IFormattable)
             {
-                result += text[i];
+                Console.WriteLine("is: реализует");
             }
-            return result;
+            else
+            {
+                Console.WriteLine("is: не реализует");
+            }
+            IFormattable f = obj as IFormattable;
+            if (f != null)
+            {
+                Console.WriteLine("as: реализует, значение " + f.ToString(null, null));
+            }
+            else
+            {
+                Console.WriteLine("as: не реализует");
+            }
         }
         static void Main()
         {
-            Console.WriteLine(Reverse("Привет"));
-            Console.WriteLine(Reverse("Hello, World!"));
-            Console.WriteLine(Reverse("12345"));
-            Console.WriteLine(Reverse("а роза упала на лапу азора"));
+            Console.WriteLine("int:");
+            CheckFormattable(42);
+            Console.WriteLine("double:");
+            CheckFormattable(3.14);
+            Console.WriteLine("DateTime:");
+            CheckFormattable(DateTime.Now);
+            Console.WriteLine("string:");
+            CheckFormattable("привет");
         }
     }
 }
